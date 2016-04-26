@@ -1,0 +1,23 @@
+body {
+    font-size: 13px;
+}
+
+.item-player {
+    margin-bottom: 20px;
+    background-color: #eee;
+}
+
+.item-player .delete {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.item-player.selected {
+    background-color: orange;
+}
+
+
+.selected-player {
+    width: 300px;
+    background-color: #ccc;
+}

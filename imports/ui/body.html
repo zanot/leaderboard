@@ -1,0 +1,12 @@
+<body>
+    <h1>Leaderboard</h1>
+
+    {{> add_player_form }}
+
+    {{> players_list }}
+
+    {{#if userHasSelectedPlayer }}
+        {{> selected_player }}
+    {{/if}}
+
+</body>

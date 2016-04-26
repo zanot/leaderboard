@@ -1,0 +1,13 @@
+<template name="players_list">
+
+    {{#if nbPlayers }}
+        <div>Liste des joueurs ({{ nbPlayers }}) :</div>
+    {{/if}}
+
+    <ul class="list-players">
+        {{#each players}}
+            {{> player }}
+        {{/each}}
+    </ul>
+
+</template>

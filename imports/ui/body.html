@@ -1,12 +1,22 @@
 <body>
     <h1>Leaderboard</h1>
 
-    {{> add_player_form }}
+    <p>{{> loginButtons }}</p>
 
-    {{> players_list }}
+    {{#if currentUser }}
 
-    {{#if userHasSelectedPlayer }}
-        {{> selected_player }}
+        {{> add_player_form }}
+
+        {{> players_list }}
+
+        {{#if userHasSelectedPlayer }}
+            {{> selected_player }}
+        {{/if}}
+
+    {{else}}
+
+        <p>You must be logged-in to see this content.</p>
+
     {{/if}}
 
 </body>

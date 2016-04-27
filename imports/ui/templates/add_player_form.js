@@ -10,9 +10,6 @@ Template.add_player_form.events({
         event.preventDefault();
 
         const input = event.target['player-name'];
-
-        // get int between 0 and 9
-        const score = Math.random().toFixed(1) * 10;
         const name  = input.value;
 
         if ( !name ) {
@@ -21,7 +18,11 @@ Template.add_player_form.events({
 
         // check result of insert before
         // incrementing the nb of players
-        PlayersList.insert({ name, score });
+        PlayersList.insert({
+            name,
+            score    : Math.random().toFixed(1) * 10, // get int between 0 and 9
+            createdBy: Meteor.userId(),
+        });
 
         // reset field
         input.value = '';

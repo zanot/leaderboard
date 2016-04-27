@@ -11,13 +11,15 @@ import './player.js';
 Template.players_list.helpers({
 
     nbPlayers() {
-        return PlayersList.find().count();
+        return PlayersList.find({ createdBy: Meteor.userId() }).count();
     },
 
     players() {
-        return PlayersList.find({}, {
+        return PlayersList.find({
+            createdBy: Meteor.userId(),
+        }, {
             // sort on score DESC, and name ASC
-            sort: { score: -1, name: 1, },
+            sort: { score: -1, name: 1 },
         });
     },
 

@@ -1,3 +1,29 @@
 <head>
     <title>Leaderboard</title>
 </head>
+<body>
+    <h1>Leaderboard</h1>
+
+    <p>{{> loginButtons }}</p>
+
+    {{#if currentUser }}
+
+        <p><em>
+            <button class="delete-all">Delete all</button>
+        </em></p>
+
+        {{> add_player_form }}
+
+        {{> players_list }}
+
+        {{#if userHasSelectedPlayer }}
+            {{> selected_player }}
+        {{/if}}
+
+    {{else}}
+
+        <p>You must be logged-in to see this content.</p>
+
+    {{/if}}
+
+</body>

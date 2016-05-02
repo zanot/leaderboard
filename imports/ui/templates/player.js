@@ -1,4 +1,4 @@
-import { PlayersList } from './../../api/players.js';
+import { PlayersList } from '/imports/api/players.js';
 
 // this "manager" must load its linked template
 import './player.html';
@@ -18,7 +18,6 @@ Template.player.helpers({
 Template.player.events({
 
     'click .item-player'() {
-        // save player id
         Session.set('selectedPlayerId', this._id);
     },
 
@@ -27,7 +26,12 @@ Template.player.events({
         event.stopPropagation();
 
         PlayersList.remove( this._id );
-        Session.set('selectedPlayerId', undefined);
+
+        // reset this session var only if the player to delete
+        // if the playe currently selected
+        if (Session.equals('selectedPlayerId', this._id)) {
+            Session.set('selectedPlayerId', undefined);
+        }
     },
 
 });

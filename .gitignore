@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 .meteor/local
 .meteor/meteorite
+TODO.txt

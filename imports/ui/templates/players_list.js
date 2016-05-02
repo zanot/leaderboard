@@ -1,5 +1,5 @@
 // we need to manipulate Tasks collection so we import it
-import { PlayersList } from './../../api/players.js';
+import { PlayersList } from '/imports/api/players.js';
 
 // this "manager" must load its linked template
 import './players_list.html';
@@ -11,7 +11,9 @@ import './player.js';
 Template.players_list.helpers({
 
     nbPlayers() {
-        return PlayersList.find({ createdBy: Meteor.userId() }).count();
+        return PlayersList
+            .find({ createdBy: Meteor.userId() })
+            .count();
     },
 
     players() {

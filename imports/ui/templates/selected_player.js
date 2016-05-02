@@ -1,17 +1,25 @@
-import { PlayersList } from '../../api/players.js';
+import { Template } from 'meteor/templating';
+import { PlayersList } from '/imports/api/players.js';
 
 // this "manager" must load its linked template
 import './selected_player.html';
 
 
+// must use normal anonymous function,
+// because arrow function keep global context
+Template.selected_player.onCreated(function () {
+    this.playerId = undefined;
+    this.points = 5;
+});
+
 
 Template.selected_player.helpers({
 
-    visibility() {
-        return '';
+    getPoints() {
+        return Template.instance().points;
     },
 
-    player() {
+    playerSelected() {
         const instance = Template.instance();
 
         instance.playerId = Session.get('selectedPlayerId');
@@ -36,7 +44,7 @@ Template.selected_player.events({
         }
 
         PlayersList.update( instance.playerId, {
-            $inc: { score: 1 },
+            $inc: { score: instance.points },
         });
     },
 
@@ -46,7 +54,7 @@ Template.selected_player.events({
         }
 
         PlayersList.update( instance.playerId, {
-            $inc: { score: -1 },
+            $inc: { score: -instance.points },
         });
     },
 

@@ -1,5 +1,7 @@
 import { PlayersList } from '/imports/api/players.js';
 
+import '/imports/startup/client/accounts-config.js';
+
 // this template use templates, load their "managers"
 import '/imports/ui/templates/add_player_form.js';
 import '/imports/ui/templates/players_list.js';

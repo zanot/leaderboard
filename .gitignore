@@ -1,5 +1,8 @@
 node_modules/
 .DS_Store
+
 .meteor/local
 .meteor/meteorite
+settings-production.json
+
 TODO.txt

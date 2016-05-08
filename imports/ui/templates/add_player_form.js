@@ -9,6 +9,7 @@ Template.add_player_form.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+
         const input = event.target['player-name'];
         const name  = input.value;
 
@@ -20,11 +21,8 @@ Template.add_player_form.events({
         const score = +(Math.random() * 100).toFixed(0);
         const createdBy = Meteor.userId();
 
-        // TODO
-        // check result of insert before
-        // incrementing the nb of players
-
         PlayersList.insert({ name, score, createdBy });
+
 
         // reset field
         input.value = '';

@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "meteor run"
-  },
-  "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
+    "dev": "meteor --settings settings-development.json",
+    "prod": "meteor --settings settings-production.json"
   }
 }

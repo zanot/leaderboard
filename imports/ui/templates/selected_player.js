@@ -6,7 +6,7 @@ import './selected_player.html';
 
 
 // must use normal anonymous function,
-// because arrow function keep global context
+// because arrow function keep global context for "this"
 Template.selected_player.onCreated(function () {
     this.playerId = undefined;
     this.points = 5;
@@ -23,6 +23,7 @@ Template.selected_player.helpers({
         const instance = Template.instance();
 
         instance.playerId = Session.get('selectedPlayerId');
+
         return PlayersList.findOne( instance.playerId );
     },
 

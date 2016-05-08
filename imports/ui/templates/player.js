@@ -28,7 +28,7 @@ Template.player.events({
         PlayersList.remove( this._id );
 
         // reset this session var only if the player to delete
-        // if the playe currently selected
+        // is the player currently selected
         if (Session.equals('selectedPlayerId', this._id)) {
             Session.set('selectedPlayerId', undefined);
         }

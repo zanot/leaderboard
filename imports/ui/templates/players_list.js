@@ -7,6 +7,8 @@ import './players_list.html';
 // this template use templates, load their "managers"
 import './player.js';
 
+import '/imports/startup/client/insert-fake-data.js';
+
 
 Template.players_list.helpers({
 

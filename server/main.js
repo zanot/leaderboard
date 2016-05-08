@@ -4,5 +4,3 @@
 
 // "bootstrap" Players collection
 import '/imports/api/players.js';
-
-// import '/imports/startup/server/fixture.js';

@@ -17,7 +17,7 @@ setTimeout(() => {
     }
 
 
-    const players = PlayersList.find({});
+    const players = PlayersList.find();
 
     if (players.count() === 0) {
 
@@ -33,7 +33,7 @@ setTimeout(() => {
             PlayersList.insert({
                 name,
                 score: createScore(),
-                createdBy: Meteor.userId()
+                createdBy: Meteor.userId(),
             });
         });
 

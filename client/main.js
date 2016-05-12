@@ -8,6 +8,12 @@ import '/imports/ui/templates/players_list.js';
 import '/imports/ui/templates/selected_player.js';
 
 
+Template.body.onCreated(function bodyOnCreated() {
+    Meteor.subscribe('players');
+    // Meteor.subscribe('players', Meteor.userId() ); // try it by passing current user id
+});
+
+
 Template.body.helpers({
 
     userHasSelectedPlayer() {
@@ -20,10 +26,9 @@ Template.body.helpers({
 Template.body.events({
 
     'click .delete-all'() {
-        // remove all players in the db
-        PlayersList.find({}).forEach(({ _id }) => {
-            PlayersList.remove( _id );
-        });
+        PlayersList
+            .find() // data already filtered by the server
+            .forEach(({ _id }) => { PlayersList.remove( _id ); });
 
         // make sure that user's selection is cleared
         Session.set('selectedPlayerId', undefined);

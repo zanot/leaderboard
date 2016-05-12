@@ -13,15 +13,11 @@ import '/imports/startup/client/insert-fake-data.js';
 Template.players_list.helpers({
 
     nbPlayers() {
-        return PlayersList
-            .find({ createdBy: Meteor.userId() })
-            .count();
+        return PlayersList.find().count(); // data already filtered by the server
     },
 
     players() {
-        return PlayersList.find({
-            createdBy: Meteor.userId(),
-        }, {
+        return PlayersList.find({}, {
             // sort on score DESC, and name ASC
             sort: { score: -1, name: 1 },
         });

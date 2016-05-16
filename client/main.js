@@ -1,5 +1,3 @@
-import { PlayersList } from '/imports/api/players.js';
-
 import '/imports/startup/client/accounts-config.js';
 
 // this template use templates, load their "managers"
@@ -8,9 +6,8 @@ import '/imports/ui/templates/players_list.js';
 import '/imports/ui/templates/selected_player.js';
 
 
-Template.body.onCreated(function bodyOnCreated() {
+Template.body.onCreated(function () {
     Meteor.subscribe('players');
-    // Meteor.subscribe('players', Meteor.userId() ); // try it by passing current user id
 });
 
 
@@ -26,12 +23,11 @@ Template.body.helpers({
 Template.body.events({
 
     'click .delete-all'() {
-        PlayersList
-            .find() // data already filtered by the server
-            .forEach(({ _id }) => { PlayersList.remove( _id ); });
+        Meteor.call('removePlayer', { all: true }, () => {
+            // make sure that user's selection is cleared
+            Session.set('selectedPlayerId', undefined);
+        });
 
-        // make sure that user's selection is cleared
-        Session.set('selectedPlayerId', undefined);
     },
 
 });

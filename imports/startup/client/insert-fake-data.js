@@ -1,4 +1,4 @@
-import { PlayersList } from '/imports/api/players.js';
+import { Players } from '/imports/api/Players.js';
 
 setTimeout(() => {
 
@@ -17,7 +17,7 @@ setTimeout(() => {
     }
 
 
-    const players = PlayersList.find();
+    const players = Players.find();
 
     if (players.count() === 0) {
 
@@ -30,10 +30,9 @@ setTimeout(() => {
             'Arnaud',
             'Pierre',
         ].forEach( (name) => {
-            PlayersList.insert({
+            Meteor.call('createPlayer', {
                 name,
                 score: createScore(),
-                createdBy: Meteor.userId(),
             });
         });
 

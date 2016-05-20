@@ -64,11 +64,20 @@ Meteor.methods({
         check( id, String );
         check( points, Number );
 
-        // Players.update( id, { $inc: { score: points } });
-        Players.update(
-            { _id: id, createdBy: this.userId },
-            { $inc: {score: points} }
-        );
+
+        const player = Players.findOne({ _id: id, createdBy: this.userId });
+
+        // if action = decrement
+        if (points < 0) {
+            const newScore = player.score + points;
+
+            // avoid new score < 0
+            if (newScore < 0) {
+                points = points - newScore;
+            }
+        }
+
+        Players.update( player, { $inc: {score: points} });
     },
 
 });

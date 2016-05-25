@@ -3,6 +3,5 @@ node_modules/
 
 .meteor/local
 .meteor/meteorite
-settings-production.json
 
-TODO.txt
+settings-production.json

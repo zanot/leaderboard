@@ -1,16 +1,16 @@
 <template name="selected_player">
 
-    <div class="selected-player {{ visibility }}">
+    <div class="selected-player">
         <div>Joueur sélectionné :</div>
 
         <button class="delete">Delete this player</button>
-        <button class="increment">Give 5 points</button>
-        <button class="decrement">Take 5 points</button>
+        <button class="increment">Give {{ getPoints }} points</button>
+        <button class="decrement">Take {{ getPoints }} points</button>
         <br />
 
         <ul>
-            <li>Nom : {{ player.name }}</li>
-            <li>Score : {{ player.score }}</li>
+            <li>Nom : {{ playerSelected.name }}</li>
+            <li>Score : {{ playerSelected.score }}</li>
         </ul>
     </div>
 

@@ -1,0 +1,7 @@
+{
+    "public": {
+        "publickey": "dev public value",
+        "devUser": "admin"
+    },
+    "secretkey": "dev secret value"
+}

@@ -1,33 +1,47 @@
-import { PlayersList } from '../../api/players.js';
+import { Template } from 'meteor/templating';
+import { Players } from '/imports/api/Players.js';
 
 // this "manager" must load its linked template
 import './selected_player.html';
 
 
+// must use normal anonymous function for templates callbacks
+// because arrow function keep global context for "this"
+Template.selected_player.onCreated(function () {
+    this.playerId = undefined;
+    this.points = 5;
+});
+
+Template.selected_player.onDestroyed(function () {
+    delete this.playerId;
+});
+
+
 
 Template.selected_player.helpers({
 
-    visibility() {
-        return '';
+    getPoints() {
+        return Template.instance().points;
     },
 
-    player() {
+    playerSelected() {
         const instance = Template.instance();
 
         instance.playerId = Session.get('selectedPlayerId');
-        return PlayersList.findOne( instance.playerId );
+
+        return Players.findOne( instance.playerId );
     },
 
 });
 
 
+
 Template.selected_player.events({
 
     'click .delete'(event, instance) {
-        PlayersList.remove( instance.playerId );
-
-        delete instance.playerId;
-        Session.set('selectedPlayerId', undefined);
+        Meteor.call('removePlayer', instance.playerId, () => {
+            Session.set('selectedPlayerId', undefined);
+        });
     },
 
     'click .increment'(event, instance) {
@@ -35,9 +49,7 @@ Template.selected_player.events({
             return;
         }
 
-        PlayersList.update( instance.playerId, {
-            $inc: { score: 1 },
-        });
+        Meteor.call('updatePlayer', instance.playerId, instance.points);
     },
 
     'click .decrement'(event, instance) {
@@ -45,9 +57,7 @@ Template.selected_player.events({
             return;
         }
 
-        PlayersList.update( instance.playerId, {
-            $inc: { score: -1 },
-        });
+        Meteor.call('updatePlayer', instance.playerId, -instance.points);
     },
 
 });

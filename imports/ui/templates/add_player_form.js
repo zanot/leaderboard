@@ -1,5 +1,3 @@
-import { PlayersList } from '../../api/players.js';
-
 import './add_player_form.html';
 
 
@@ -9,6 +7,7 @@ Template.add_player_form.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+
         const input = event.target['player-name'];
         const name  = input.value;
 
@@ -16,13 +15,11 @@ Template.add_player_form.events({
             return;
         }
 
-        // check result of insert before
-        // incrementing the nb of players
-        PlayersList.insert({
-            name,
-            score    : Math.random().toFixed(1) * 10, // get int between 0 and 9
-            createdBy: Meteor.userId(),
-        });
+        // get random int
+        const score = +(Math.random() * 100).toFixed(0);
+
+        Meteor.call('createPlayer', { name, score });
+
 
         // reset field
         input.value = '';

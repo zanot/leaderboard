@@ -1,0 +1,1 @@
+- User signs out => clear "user selected"
